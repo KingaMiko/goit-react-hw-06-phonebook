@@ -5,9 +5,13 @@ export const StyledFilter = styled.div`
 `;
 
 export const StyledLabelFilter = styled.label`
-  color: #000;
+  margin: 0 auto;
+  display: flex;
 `;
 
 export const StyledFilterInput = styled.input`
-  margin-left: 20px;
+  width: 300px;
+  margin: 0px auto;
+  text-align: center;
+  height: 30px;
 `;

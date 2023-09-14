@@ -7,7 +7,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: rgba(236, 96, 96, 0.4);
+  background-color: #fdf4f5;
 }
 
 code {
@@ -30,19 +30,19 @@ button {
   height: 30px;
   margin: 0px auto;
   text-align: center;
-  color: white;
+  color: black;
   border: none;
   border-radius: 10px;
-  background: #ff7575;
-  box-shadow: 0 5px #999;
-  transition: all 0.2s ease-out;
+  background: #c0dbea;
+  box-shadow: 0 1px #999;
+  transition: all 0.1s ease-out;
   font-weight: 500;
-  margin-right: 10px;
+  margin: auto;
 }
 
 button:hover {
   text-decoration: bold;
-  background: #ec6060;
-  box-shadow: 0 3px #666;
+  background: rgb(141, 181, 224);
+  box-shadow: 0 2px #666;
   transform: translateY(2px);
 }

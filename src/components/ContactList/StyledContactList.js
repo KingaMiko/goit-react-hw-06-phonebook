@@ -1,20 +1,21 @@
 import styled from 'styled-components';
 
 export const StyledList = styled.ul`
-  background-color: white;
+  background-color: #ba90c6;
   display: flex;
   justify-content: center;
   flex-direction: column;
+  width: 350px;
   padding: 20px;
-  border-radius: 10px;
-  box-shadow: 1rem 1rem 1rem rgb(65, 64, 64, 0.5),
-    -1rem -1rem 1rem rgb(82, 81, 81, 0.5);
+  border-radius: 5px;
+  box-shadow: 0 9px 50px hsla(20, 67%, 75%, 0.31);
 `;
 
 export const StyledItem = styled.li`
-  background-color: rgba(245, 159, 179, 0.2);
+  background-color: #fdf4f5;
+  border-radius: 5px;
+  box-shadow: 0 9px 50px hsla(20, 67%, 75%, 0.31);
   padding: 10px;
-  border-radius: 10px;
   margin-bottom: 5px;
   display: flex;
   justify-content: space-between;

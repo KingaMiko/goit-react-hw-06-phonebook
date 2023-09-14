@@ -1,40 +1,40 @@
-import React, { useState } from 'react';
-import { nanoid } from 'nanoid';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addContact, deleteContact, setFilter } from '../redux/actions';
 import ContactList from './ContactList/index';
 import ContactForm from './ContactForm/index';
 import Filter from './Filter/index';
-import { StyledAllContacts, StyledTitleContacts } from './StyledApp';
-import { useContacs } from './hooks/useConacts';
+import {
+  StyledAllContacts,
+  StyledTitleContacts,
+  Wrapper,
+  Header,
+} from './StyledApp';
 
 const App = () => {
-  const [contacts, setContacts] = useContacs();
-  const [filter, setFilter] = useState('');
+  const dispatch = useDispatch();
+  const contacts = useSelector(state => state.contacts);
+  const filter = useSelector(state => state.filter);
 
-  const isContactAdded = name =>
-    contacts.some(contact => contact.name.toLowerCase() === name.toLowerCase());
+  const handleSubmit = values => {
+    const isContactAdded = contacts.some(
+      contact => contact.name.toLowerCase() === values.name.toLowerCase()
+    );
 
-  const addContact = ({ name, number }) => {
-    if (isContactAdded(name)) {
-      alert(`${name} is already in contacts`);
+    if (isContactAdded) {
+      alert(`${values.name} is already in contacts`);
       return;
     }
 
-    const contact = {
-      id: nanoid(),
-      name: name,
-      number: number,
-    };
-    setContacts(prevContacts => [...prevContacts, contact]);
+    dispatch(addContact(values.name, values.number));
   };
 
-  const changeFilter = e => {
-    setFilter(e.currentTarget.value);
+  const handleFilterChange = e => {
+    dispatch(setFilter(e.target.value));
   };
 
-  const deleteContact = contactId => {
-    setContacts(prevContacts =>
-      prevContacts.filter(contact => contact.id !== contactId)
-    );
+  const handleDelete = id => {
+    dispatch(deleteContact(id));
   };
 
   const getVisibleContacts = () => {
@@ -47,31 +47,21 @@ const App = () => {
   const visibleContacts = getVisibleContacts();
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'column',
-        fontSize: 18,
-        color: '#010101',
-      }}
-    >
-      <h1>Phonebook</h1>
-      <ContactForm onSubmit={addContact} />
-
+    <Wrapper>
+      <Header>Phonebook</Header>
+      <ContactForm onSubmit={handleSubmit} />
       <StyledTitleContacts>Contacts</StyledTitleContacts>
       <StyledAllContacts>All contacts: {contacts.length}</StyledAllContacts>
-      <Filter value={filter} onChange={changeFilter} />
+      <Filter value={filter} onChange={handleFilterChange} />
       {visibleContacts.length > 0 ? (
         <ContactList
           contacts={visibleContacts}
-          onDeleteContact={deleteContact}
+          onDeleteContact={handleDelete}
         />
       ) : (
         <p>No contacts available.</p>
       )}
-    </div>
+    </Wrapper>
   );
 };
 

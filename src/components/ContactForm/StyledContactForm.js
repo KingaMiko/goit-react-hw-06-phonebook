@@ -1,32 +1,37 @@
 import styled from 'styled-components';
 
 export const StyledForm = styled.form`
-  background-color: white;
+  background-color: #ba90c6;
   display: flex;
-  width: 300px;
+  width: 350px;
   justify-content: center;
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  border-radius: 10px;
-  box-shadow: 1rem 1rem 1rem rgb(65, 64, 64, 0.5),
-    -1rem -1rem 1rem rgb(82, 81, 81, 0.5);
+  border-radius: 5px;
+  box-shadow: 0 9px 50px hsla(20, 67%, 75%, 0.31);
 `;
 
 export const StyledLabel = styled.label`
-  margin-bottom: 10px;
+  width: 100%;
+  margin-bottom: 2px;
   color: black;
   font-size: 15px;
-
   &:last-child {
     margin-bottom: 0px;
   }
 `;
 
 export const StyledInputName = styled.input`
-  margin-left: 25px;
+  width: 95%;
+  margin: 10px auto;
+  text-align: center;
+  height: 30px;
 `;
 
 export const StyledInputNumber = styled.input`
-  margin-left: 10px;
+  width: 95%;
+  margin-bottom: 10px;
+  text-align: center;
+  height: 30px;
 `;
