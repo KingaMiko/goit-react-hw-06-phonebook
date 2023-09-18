@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteContact } from '../../redux/actions';
+import { deleteContact } from '../../redux/slices';
+import { getContacts, getFilter } from '../../redux/selectors';
 import {
   StyledList,
   StyledItem,
@@ -9,8 +10,8 @@ import {
 } from './StyledContactList';
 
 const ContactList = () => {
-  const contacts = useSelector(state => state.contacts);
-  const filter = useSelector(state => state.filter);
+  const contacts = useSelector(getContacts);
+  const filter = useSelector(getFilter);
   const dispatch = useDispatch();
 
   const filteredContacts = contacts.filter(contact =>

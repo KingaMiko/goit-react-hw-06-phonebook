@@ -1,9 +1,10 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact, deleteContact, setFilter } from '../redux/actions';
+import { addContact, deleteContact, setFilter } from '../redux/slices';
 import ContactList from './ContactList/index';
 import ContactForm from './ContactForm/index';
 import Filter from './Filter/index';
+import { getContacts, getFilter } from 'redux/selectors';
 import {
   StyledAllContacts,
   StyledTitleContacts,
@@ -13,20 +14,15 @@ import {
 
 const App = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(state => state.contacts);
-  const filter = useSelector(state => state.filter);
+  const contacts = useSelector(getContacts);
+  const filter = useSelector(getFilter);
 
-  const handleSubmit = values => {
-    const isContactAdded = contacts.some(
-      contact => contact.name.toLowerCase() === values.name.toLowerCase()
-    );
-
-    if (isContactAdded) {
-      alert(`${values.name} is already in contacts`);
-      return;
+  const handleSubmit = async values => {
+    try {
+      await dispatch(addContact(values));
+    } catch (error) {
+      alert(error.message);
     }
-
-    dispatch(addContact(values.name, values.number));
   };
 
   const handleFilterChange = e => {

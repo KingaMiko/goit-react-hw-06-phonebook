@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setFilter } from '../../redux/actions';
+import { setFilter } from '../../redux/slices';
+import { getFilter } from 'redux/selectors';
 import {
   StyledFilter,
   StyledLabelFilter,
@@ -9,7 +10,7 @@ import {
 
 const Filter = () => {
   const dispatch = useDispatch();
-  const filter = useSelector(state => state.filter);
+  const filter = useSelector(getFilter);
 
   const handleFilterChange = e => {
     dispatch(setFilter(e.target.value));
